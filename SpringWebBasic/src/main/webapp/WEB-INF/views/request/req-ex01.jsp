@@ -10,12 +10,12 @@
 
 	<h3>Request 컨트롤러를 이용한 요청 처리 작업 중 ~~</h3>
 	
-	<form action="/basic/request/basic01">
+	<form action = "/basic/request/basic01">
 		<input type ="submit" value ="GET 요청">
 	</form>
 	
-	<form action="/basic/request/basic01" method ="post">
-	<input type ="submit" value ="POST 요청">
+	<form action = "/basic/request/basic01" method ="post">
+		<input type ="submit" value ="POST 요청">
 	</form>
 </body>
 </html>

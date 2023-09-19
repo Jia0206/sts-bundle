@@ -28,7 +28,8 @@ public class RequestController {
 
 	@RequestMapping("/test")	
 	public String testCall() {
-		//메서드 생성 -> 
+		//메서드 생성 -> 객체를 생성한다라는 의미로서 
+		//불러들일 수 있게 만든다.
 		//컨트롤러가 서블릿에게 어떤 요청이 들어올지 정해놓기 위해 맵핑
 		System.out.println("/request/test 요청이 들어옴");
 		return "test";
@@ -51,17 +52,17 @@ public class RequestController {
 	}
 
 
-	//	@RequestMapping(value = "/request/basic01", method = RequestMethod.GET)
+	//@RequestMapping(value = "/request/basic01", method = RequestMethod.GET)
 	@GetMapping("/basic01")
 	public String basicGet() {
-		System.out.println("/basic01이라는 요청이 들어옴! :GET 방식");
+		System.out.println("/basic01이라는 요청이 들어옴! : GET 방식");
 		return "request/req-ex01";
 	}
 
-	//	@RequestMapping(value = "/request/basic01", method =RequestMethod.POST)
+	//	@RequestMapping(value = "/request/basic01", method = RequestMethod.POST)
 	@PostMapping("/basic01")
 	public String basicPost() {
-		System.out.println("/basic01이라는 요청이 들어옴!: POST 방식!");
+		System.out.println("/basic01이라는 요청이 들어옴! : POST 방식!");
 		return "request/req-ex01";
 	}
 
@@ -72,6 +73,11 @@ public class RequestController {
 	@GetMapping("/join")
 	public void register() {
 		System.out.println("/request/join: GET");
+		
+		//메서드 void를 사용하는 이유 
+		// void는 return 값이 존재하지 않는다. 
+		//그렇기 때문에 void를 사용하여 선언하는 것이다. 
+		
 
 		// 요청 URI 주소가 같더라도, 전송 방식에 따라 맵핑을 다르게 하기 때문에 
 		//같은 주소를 사용하는 것이 가능합니다.( GET -> 화면처리, POST -> 입력값 처리) 
