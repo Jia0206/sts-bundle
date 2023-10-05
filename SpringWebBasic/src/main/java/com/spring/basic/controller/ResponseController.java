@@ -18,10 +18,10 @@ public class ResponseController {
 	
 	/*
 	 1. Model 객체를 사용하여 응답할 화면에 데이터를 전송하기.
-	 스프링에서 제공하는 Model타입의 객체를 활용하여 Jsp 파일과 같은 
+	 스프링에서 제공하는 Model타입의 객체를 활용하여 jsp 파일과 같은 
 	 view 템플릿으로 데이터를 전송할 수 있습니다.
 	 Model 객체는 기본적으로 Request 객체의 attribute로 설정되어 전송되므로, 
-	 기존에 알고계시던 forward 방식의 응답을 생각하시면 됩니다. 
+	 기존에 알고계시던 forward 방식의 응답을 생각하시면 됩니다. Model.addAttribute("이름 ",가치);
 	 */
 	/*
 	@GetMapping("/test")
@@ -36,8 +36,8 @@ public class ResponseController {
 	//2. @ModelAttribute를 사용한 화면에 데이터 전송 처리 
 	// @RequestParam + model.addAttribute처럼 동작한다 
 	@GetMapping("/test")
-	private void test(@ModelAttribute("age")int age,Model model) {
-	//model.addAttribute("age",age);을 할 필요 없음
+	private void test(@ModelAttribute("age")int age, Model model) {
+	//model.addAttribute("age", age);을 할 필요 없음
 		model.addAttribute("nick","짹짹이");
 		
 		

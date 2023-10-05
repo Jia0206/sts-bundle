@@ -28,6 +28,7 @@ public class CoffeeController {
 		
 		model.addAttribute("menu", menu);
 		model.addAttribute("p", price);
+		//model.addArribute("이름",value);
 		
 		return "response/coffee-result";
 	}

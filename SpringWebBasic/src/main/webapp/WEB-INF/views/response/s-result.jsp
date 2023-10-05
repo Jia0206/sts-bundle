@@ -29,12 +29,12 @@
 		 JSP파일이 클래스로 변환하는 과정에서 작성한 EL 문법은 자바코드로 
 		 변환 -> 값을 표현 -> 응답은 HTML로 표현.
 		 EL 표현식이 서버에서 먼저 평가되고 그 결과를 크라이언트에게 전달하여 브라우저로 표현 
-		 하기 때문에 SCRIPT에서  EL표현이 가능합니다.
+		 하기 때문에 script에서  EL표현이 가능합니다.
 		 javascript에서 EL표현식을 작성할 때는 문자열로 로 감싸주세요. 
 		*/
-		const result = '${result}';
+		const result = '${result}'; //변수 설정 
 		//console.log('result: ' + result );
-		 
+		 // textContent => <script>과 <content> 값을 다 가지고 있다. 
 		
 		const $h1= document.querySelector('.result-title');
 		switch(result){

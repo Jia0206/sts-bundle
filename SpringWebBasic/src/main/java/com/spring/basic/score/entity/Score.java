@@ -14,7 +14,7 @@ import lombok.ToString;
  - 실제 데이터베이스에 저장된 테이블(값의 모음) 형태와 1:1로 매칭되는 클래스. 
  - DB 테이블 내에 존재하는 속성만을 필드로 가져야 합니다. 
  - 상속이나 구현체 여서는 안되고, 존재하지 않는 컬럼값을 가지는 것도 안됩니다.(가장 PURE한 객체)
- - 절대로 요청이나 응답값을 전달하는 클래스로 사용하지 않습니다.(DTO 역할) 
+ - 절대로 요청이나 응답값을 전달하는 클래스로 사용하지 않습니다.(DTO 역할을 하지 않음) 
  
   */
 @Setter
@@ -24,13 +24,14 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Score {
 	
+	private int stuNum; //학번
 	private String stuName; //학생 이름
 	private int kor, eng, math;// 
 	
-	private int stuNum; //학번 
-	private int total;
-	private double average;
-	private Grade grade;
+	 
+	private int total;//총점
+	private double average;//평균
+	private Grade grade;//학점
 	
 	public Score(ScoreRequestDTO dto) {
 		this.stuName = dto.getName();
