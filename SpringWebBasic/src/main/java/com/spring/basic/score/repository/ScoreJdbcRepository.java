@@ -45,6 +45,7 @@ public class ScoreJdbcRepository implements IScoreRepository {
 	public List<Score> findAll() {
 		//조회된 정보를 모두 담아서 한 번에 리턴하기 위한 리스트.
 		List<Score> scoreList = new ArrayList<>();
+		
 		//1.
 		String sql = "SELECT * FROM score";
 		
@@ -62,7 +63,7 @@ public class ScoreJdbcRepository implements IScoreRepository {
 			//메서드의 실행 결과는 sql의 조회결과를 들고 있는 객체 ResultSet이 리턴됩니다.
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){ // 조회된 행이 하나라도 존재한다면 true,존재하지 않는다면 false. 
+			while(rs.next()){ // 조회된 행이 하나라도 존재한다면 true, 존재하지 않는다면 false. 
 				//타겟으로 잡힌 행의 데이터를 얻어옵니다.
 				Score s = new Score(
 						rs.getInt("stu_num"),
@@ -155,7 +156,28 @@ public class ScoreJdbcRepository implements IScoreRepository {
 
 	@Override
 	public void deleteByStuNum(int stuNum) {
-		// TODO Auto-generated method stub
+			String sql = "DELETE FROM score WHERE stu_num = ?";
+			
+			
+			try {
+				
+				conn = DriverManager.getConnection(url, username, password);
+				//conn.setAutoCommit(false); // 오토커밋 취소
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, stuNum);
+				 
+				int result = pstmt.executeUpdate();
+				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				pstmt.close(); conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 	}
 

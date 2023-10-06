@@ -83,6 +83,7 @@ public class ScoreController {
 	@GetMapping("/remove")
 	public String remove(int stuNum) {
 		System.out.println("/score/remove: GET!");
+		System.out.println("요청과 함께 넘어온 번호: " +stuNum);
 		
 		service.delete(stuNum);
 		return "redirect:/score/list";
@@ -94,7 +95,7 @@ public class ScoreController {
 		retrieve(stuNum, model);
 		return "score/score-modify";
 	}
-	
+	//상세보기, 수정화면 공통 로직을 메서드화 
 	private void retrieve(int stuNum, Model model) {
 		Score score= service.retrieve(stuNum);
 		model.addAttribute("s", score);
