@@ -4,6 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
  <!-- 구현하고자 하는 인터페이스의 풀 경로를 작성 -->
+ <!-- 경로 설정을 하고 쿼리 작성! -->
  <mapper namespace="com.spring.basic.score.repository.IScoreMapper">
     
     <!-- DB 컬럼명과 Entity 객체의 필드명을 맞추는 resultMap을 선언 -->
@@ -28,8 +29,24 @@
    		SELECT * FROM score
    </select> 	
     
+    <!-- 점수 삭제 기능 -->
+    <delete id ="deleteByStuNum">
+    	DELETE FROM score WHERE stu_num = #{stuNum}
+    </delete>
     
+    <!-- 점수 상세 정보 -->
+    <select id ="findByStuNum" resultMap ="scoreMap">
+    	SELECT * FROM score
+    	WHERE stu_num = #{stuNum}
+    </select>
     
+    <!-- 점수 수정 -->
+    <update id ="modify">
+    	UPDATE score
+    	SET kor=#{kor},eng=#{eng}, math=#{math}, total=#{total},
+    	average=#{average},grade=#{grade}
+    	WHERE stu_num=#{stuNum}
+    </update>
  </mapper>
     
     
