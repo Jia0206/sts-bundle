@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.spring.myweb.freeboard.dto.page.Page;
 import com.spring.myweb.freeboard.entity.FreeBoard;
 import com.spring.myweb.freeboard.mapper.IFreeBoardMapper;
 
@@ -34,27 +35,29 @@ public class FreeBoardMapperTest {
 		//GIVEN - WHEN - THEN 패턴을 따릅니다. ( 권장 사항 )
 		
 		//given:테스트를 위해 주어질 데이터 세팅(parameter)- 생략 
-		/*for(int i=1; i<=10; i++) {
-			
+		for(int i=1; i<=300; i++) {			
 			//when : 테스트 실제 상황 세팅
 			mapper.regist(FreeBoard.builder()
-						.title("테스트 제목" + i)
-						.writer("abc1234")
+						.title("페이징 테스트 제목" + i)
+						.writer("page1234")
 						.content("테스트 내용입니다. " + i)
 						.build());
-		}*/
-		mapper.regist(FreeBoard.builder()
-				.title("메롱메롱" )
-				.writer("k1234")
-				.content("테스트 내용입니다. " )
-				.build());
+		}
+//		mapper.regist(FreeBoard.builder()
+//				.title("메롱메롱" )
+//				.writer("k1234")
+//				.content("테스트 내용입니다. " )
+//				.build());
 		//then: 테스트 결과를 확인.
 	}
 	@Test
 	@DisplayName("조회 시 전체 글 목록이 올 것이고, 조회된 글의 개수는 11개일 것이다. ")
 	void getListTest() {
 		
-	List<FreeBoard> list = mapper.getList();
+	List<FreeBoard> list = mapper.getList(Page.builder()
+												.pageNo(4)
+												.amount(10)
+												.build());
 	for(FreeBoard board :list) {
 		System.out.println(board);
 	}
@@ -125,7 +128,7 @@ public class FreeBoardMapperTest {
 		
 		int bno = 1;
 		mapper.delete(bno);
-		assertEquals(mapper.getList().size(),11);
+		//assertEquals(mapper.getList().size(),11);
 		assertNull(mapper.getContent(bno));
 		
 	}

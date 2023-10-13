@@ -5,8 +5,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.spring.myweb.freeboard.dto.FreeListResponseDTO;
-import com.spring.myweb.freeboard.dto.FreeRegistRequestDTO;
+import com.spring.myweb.freeboard.dto.page.Page;
+import com.spring.myweb.freeboard.dto.request.FreeModifyRequestDTO;
+import com.spring.myweb.freeboard.dto.request.FreeRegistRequestDTO;
+import com.spring.myweb.freeboard.dto.response.FreeDetailResponseDTO;
+import com.spring.myweb.freeboard.dto.response.FreeListResponseDTO;
 import com.spring.myweb.freeboard.entity.FreeBoard;
 import com.spring.myweb.freeboard.mapper.IFreeBoardMapper;
 
@@ -28,30 +31,38 @@ public class FreeBoardService implements IFreeBoardService {
 
 	
 	@Override
-	public List<FreeListResponseDTO> getList() {
+	public List<FreeListResponseDTO> getList(Page page) {
 		List<FreeListResponseDTO> dtoList = new ArrayList();
-		List<FreeBoard> list = mapper.getList();
+		List<FreeBoard> list = mapper.getList(page);
 		for(FreeBoard board :list ) {
 			dtoList.add(new FreeListResponseDTO(board));
 		}
 		return dtoList;
 	}
-
+	
 	@Override
-	public FreeBoard getContent(FreeListResponseDTO bno) {
-		
-		return null;
+	public int getTotal(Page page) {
+		return mapper.getTotal(page);
 	}
-
 	@Override
-	public void update(FreeBoard freeBoard) {
-		// TODO Auto-generated method stub
+	public FreeDetailResponseDTO getContent(int bno) {
+		FreeBoard board = mapper.getContent(bno);	
+		
+		return new FreeDetailResponseDTO(board);
+	}
+	@Override	
+	public void update(FreeModifyRequestDTO freeBoard) {
+		mapper.update(FreeBoard.builder()
+				.title(freeBoard.getTitle())
+				.content(freeBoard.getContent())
+				.bno(freeBoard.getBno())
+				.build());
 
 	}
 
 	@Override
 	public void delete(int bno) {
-		// TODO Auto-generated method stub
+		mapper.delete(bno);
 
 	}
 
