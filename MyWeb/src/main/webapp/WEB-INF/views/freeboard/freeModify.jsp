@@ -10,7 +10,7 @@
                             <p>수정하기</p>
                         </div>
                         
-                        <form action="/myweb/freeboard/modify" method="post" name="updateForm">                            
+                        <form action="${pageContext.request.contextPath}/freeboard/modify" method="post" name="updateForm">                            
                             <div class="form-group">
                                 <label>번호</label>
                                 <input class="form-control" name='bno' value="${article.bno}" readonly>
@@ -45,7 +45,7 @@
         <script>
             // 목록 이동 처리
             document.getElementById('list-btn').onclick = function(){
-                location.href='/myweb/freeboard/freeList';
+                location.href='${pageContext.request.contextPath}/freeboard/freeList';
             }
             
             // form 태그는 메서드 없이 form태그의 name으로 요소를 바로 취득할 수 있습니다.
@@ -71,9 +71,9 @@
             // 삭제 버튼 이벤트 처리 
             document.getElementById('del-btn').onclick = () => {
                     if(confirm('정말 삭제하시겠습니까?')){
-                        $form.setAttribute('action','/myweb/freeboard/delete');
+                        $form.setAttribute('action','${pageContext.request.contextPath}/freeboard/delete');
                         //action을 위 링크로 바꿔주는 코드를 말한다. 
-                        // => 선택한 요소(action)의 속성(/myweb/freeboard/delete) 값을 정합니다
+                        // => 선택한 요소(action)의 속성(${pageContext.request.contextPath}/freeboard/delete) 값을 정합니다
                         $form.submit();
                     
             }

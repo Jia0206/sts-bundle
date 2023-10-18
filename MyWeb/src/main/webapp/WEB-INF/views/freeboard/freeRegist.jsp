@@ -18,11 +18,11 @@
                         <tbody class="t-control">
                             <tr>
                                 <td class="t-title">NAME</td>
-                                <td><input class="form-control input-sm" name="writer"></td>                     
+                                <td><input class="form-control input-sm" name="writer" value="${login}" readonly></td>                     
                             </tr>
                             <tr>
                                 <td class="t-title">TITLE</td>
-                                <td><input class="form-control input-sm"name="title"></td>
+                                <td><input class="form-control input-sm" name="title"></td>
                             </tr>
                             <tr>
                                 <td class="t-title">COMMENT</td>
@@ -34,7 +34,7 @@
                     </table>
                     <div class="titlefoot">
                         <button type="submit" class="btn">등록</button>
-                        <button type="button" class="btn" onclick="location.href='/myweb/freeboard/freeList'">목록</button>
+                        <button type="button" class="btn" onclick="location.href='${pageContext.request.contextPath}/freeboard/freeList'">목록</button>
                     </div>
                 </form>
                     
