@@ -30,9 +30,11 @@ public class ReplyController {
 	//댓글 등록
 	@PostMapping()
 	public String replyRegist(@RequestBody ReplyRequestDTO dto) {
+		//@RequestBody 이걸 사용함으로써 ReplyRequestDTO dto의 값이 모두 담겨서 전달된다 .
 		System.out.println("댓글 등록 요청 들어옴!" + dto);
 		service.replyRegist(dto);
 		return "regSuccess";
+		
 	}
 	
 	//목록 요청
